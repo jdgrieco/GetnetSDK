@@ -119,11 +119,11 @@ class Request
             curl_setopt($curl, CURLOPT_VERBOSE, 1);
         }
 
-        try {
+        //try {
             $response = curl_exec($curl);
-        } catch (Exception $e) {
-            print "ERROR";
-        }
+        //} catch (Exception $e) {
+        //    print "ERROR";
+        //}
         if ($credentials->debug === true) {
             $info = curl_getinfo($curl);
             print_r($info);
@@ -138,8 +138,7 @@ class Request
             throw new Exception($response, 100);
         }
         if (!$response) {
-            print "ERROR";
-            EXIT;
+            throw new Exception('no response');
         }
         curl_close($curl);
 
